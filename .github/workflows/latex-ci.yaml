@@ -5,6 +5,8 @@ on:
     branches:
       - master
 
+  workflow_dispatch:
+
 jobs:
   build_latex:
     runs-on: ubuntu-latest
@@ -27,3 +29,13 @@ jobs:
           name: PDF
           path: files/index.pdf
           retention-days: 1
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        #     if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: files/index.pdf
+          tag_name: latest
+          release_name: Latest PDF Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
