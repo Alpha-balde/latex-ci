@@ -36,6 +36,5 @@ jobs:
         with:
           files: files/index.pdf
           tag_name: latest
-          release_name: Latest PDF Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
