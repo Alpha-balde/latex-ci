@@ -1,0 +1,26 @@
+name: LaTeX to PDF
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX to PDF
+        uses: docker://ghcr.io/xu-cheng/texlive-full:latest
+        with:
+          root_file: files/index.tex
+          args: lualatex -interaction=nonstopmode -file-line-error files/index.tex
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf
+          path: output/index.pdf

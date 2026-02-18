@@ -1,0 +1,46 @@
+\documentclass[12pt,a4paper]{article}
+
+% Langue
+\usepackage[french]{babel}
+
+% LuaLaTeX
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+
+% Maths
+\usepackage{amsmath, amssymb}
+
+% Mise en page
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% Graphiques
+\usepackage{graphicx}
+\usepackage{mwe} % <-- pour example-image
+
+% Liens
+\usepackage{hyperref}
+
+\title{Exemple de document \LaTeX{}}
+\author{Jean Dupont}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Ceci est un exemple de document \LaTeX{}.
+
+\section{Mathématiques}
+\[
+\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}
+\]
+
+\section{Graphiques}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{example-image}
+    \caption{Un exemple de graphique}
+\end{figure}
+
+\end{document}

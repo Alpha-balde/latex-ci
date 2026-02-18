@@ -13,4 +13,9 @@ jobs:
 
     steps:
       - name: start build job
-        run: echo "start build job on branch ${{github.ref}}"
+        run: |
+          echo "start build job on branch ${{github.ref}}"
+          echo "context github: ${{github.event_name}}, " 
+          echo "repository: ${{github.repository}}, "
+          echo "auteur: ${{github.actor}}, "
+          echo "autres variables:  ${{github.ref}}, ${{github.sha}}, ${{github.workflow}}, ${{github.action}}, ${{github.actor}}"
