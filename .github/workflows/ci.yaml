@@ -1,0 +1,16 @@
+name: latex compiler
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: start build job
+        run: echo "start build job on branch ${{github.ref}}"
