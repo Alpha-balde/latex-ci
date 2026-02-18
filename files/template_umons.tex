@@ -2,9 +2,15 @@
 \documentclass[12pt,a4paper,oneside]{article}
 
 % --- Gestion des polices et langues (Moderne pour LuaLaTeX) ---
-\usepackage[french]{babel} % 'french' au lieu de 'frenchb'
-\usepackage{fontspec}      % Requis pour LuaLaTeX
-\setmainfont{Times New Roman} % Remplace \usepackage{times}
+\usepackage[french]{babel} 
+\usepackage{fontspec}      
+
+% Utilisation d'une police équivalente à Times installée sur les serveurs Linux
+\setmainfont{texgyretermes-regular.otf}[
+  BoldFont = texgyretermes-bold.otf,
+  ItalicFont = texgyretermes-italic.otf,
+  BoldItalicFont = texgyretermes-bolditalic.otf
+]
 
 % --- Maths ---
 \usepackage{amsmath}
@@ -16,60 +22,65 @@
 \usepackage{tabularx}
 \usepackage{url}
 
-% --- Suppression de inputenc et fontenc ---
-% LuaLaTeX gère l'UTF-8 et les polices T1 nativement via fontspec.
-
-% --- Mise en page ---
-\setlength{\hoffset}{-42.2pt} 	
-\setlength{\oddsidemargin}{0pt} 	
-\setlength{\evensidemargin}{0pt} 
-\setlength{\textwidth}{570pt} 	
-\setlength{\textheight}{845pt} 
-\setlength{\topmargin}{-115pt} 
-\setlength{\footskip}{30pt}
-\setlength{\headsep}{40pt} 
-\setlength{\headheight}{0pt} 
-\setlength{\marginparsep}{0pt}
+% --- Mise en page (Optimisée) ---
+\usepackage{geometry}
+\geometry{
+    textwidth=570pt,
+    textheight=845pt,
+    top=1cm,
+    bottom=2cm,
+    headheight=0pt,
+    headsep=40pt,
+    footskip=30pt,
+    includeheadfoot
+}
 
 \begin{document}
 \begin{titlepage}
 \vspace*{0.95cm}
 \begin{center}
-\textnormal{\Large{Université de Mons}}\\[0.3em] % Accents directs autorisés en UTF-8
-\textnormal{\Large{Faculté des Sciences}}\\[0.3em]
-\textnormal{\Large{Département d'Informatique}}\\[0.3em]
-\textnormal{\Large{NOM DU SERVICE (optionnel)}}
+    {\Large Université de Mons}\\[0.3em] 
+    {\Large Faculté des Sciences}\\[0.3em]
+    {\Large Département d'Informatique}\\[0.3em]
+    {\Large NOM DU SERVICE (optionnel)}
 \end{center}
+
 \vspace*{4cm}
+
 \begin{center}
 \fbox{
-\begin{minipage}{16cm}
-\centering
-\vspace*{0.5cm}\textbf{\LARGE{Intitulé du mémoire}}\\[0.5em]
-\textbf{\LARGE{suite de l'intitulé}}\vspace*{0.5cm}
-\end{minipage}
+    \begin{minipage}{0.9\textwidth}
+        \centering
+        \vspace*{0.5cm}
+        \textbf{\LARGE Intitulé du mémoire}\\[0.5em]
+        \textbf{\LARGE suite de l'intitulé}
+        \vspace*{0.5cm}
+    \end{minipage}
 }
 \end{center}
+
 \vspace*{3cm}
 
 \begin{center}
-\large
-\begin{tabular*}{16.7cm}{@{\extracolsep{\fill}}lr}
-Directeur : Mme Prénom \textsc{Nom} & Mémoire réalisé par\\
-& Prénom \textsc{Nom}\\[1em]
-Rapporteurs : Mr Prénom \textsc{Nom} & en vue de l'obtention du grade de\\
-\hspace{26.4mm}Mr Prénom \textsc{Nom} & Master en Sciences Informatiques
-\end{tabular*}
+    \large
+    \begin{tabularx}{\textwidth}{@{}X r@{}}
+        Directeur : Mme Prénom \textsc{Nom} & Mémoire réalisé par :\\
+        & Prénom \textsc{Nom}\\[1.5em]
+        Rapporteurs : Mr Prénom \textsc{Nom} & En vue de l'obtention du grade de :\\
+        \phantom{Rapporteurs : }Mr Prénom \textsc{Nom} & Master en Sciences Informatiques
+    \end{tabularx}
 \end{center}
 
-\vspace*{4cm}
+\vspace*{\vfill} % Pousse le logo vers le bas de la page
+
 \begin{center}
-% Attention : assurez-vous que ces images existent dans votre repo
-% \includegraphics[height=2cm]{UMONS-logo.jpg}
-% \hspace{3cm}
-% \includegraphics[height=1.7cm]{FS-logo.jpg}
-\\[1em]
-Année académique 2022-2023
+    % Si les fichiers images ne sont pas présents, compilez sans ces lignes 
+    % ou vérifiez qu'ils sont dans le dossier 'files/'
+    \includegraphics[height=2cm]{UMONS-logo.jpg}
+    \hspace{2cm}
+    \includegraphics[height=1.7cm]{FS-logo.jpg}
+    \\[1em]
+    Année académique 2022-2023
 \end{center}
 
 \end{titlepage}
