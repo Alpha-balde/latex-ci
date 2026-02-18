@@ -17,6 +17,7 @@ jobs:
         uses: xu-cheng/latex-action@v4
         with:
           root_file: files/index.tex
+          work_in_root_file_dir: true
           compiler: lualatex
           args: "-interaction=nonstopmode -file-line-error"
 
