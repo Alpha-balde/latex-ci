@@ -24,5 +24,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: PDF
-          path: output/index.pdf
+          path: files/index.pdf
           retention-days: 1
