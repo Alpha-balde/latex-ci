@@ -22,13 +22,22 @@
 \usepackage{hyperref}
 \usepackage{blindtext}
 
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black, % ou blue si vous préférez
+    urlcolor=blue,
+    pdftitle={Votre titre ici}
+}
+
 \title{Exemple de document \LaTeX{}}
-\author{Jean Dupont}
+\author{Alpha Baldé}
 \date{\today}
 
 \begin{document}
 \maketitle
 
+\tableofcontents
+\newpage  
 \section{Introduction}
 Ceci est un exemple de document \LaTeX{}.
 
@@ -44,9 +53,14 @@ Ceci est un exemple de document \LaTeX{}.
     \caption{Un exemple de graphique}
 \end{figure}
 
+\Blindtext
 
 \section{Conclusion}
-\blindtext
+\Blindtext
 \section{Annexes}
 \Blindtext
+
+\section{liens} 
+\href{https://www.overleaf.com/learn/latex/Hyperlinks}{Documentation sur les hyperliens}
+
 \end{document}

@@ -1,4 +1,4 @@
-name: latex compiler
+name: Hello CI
 
 on:
   push:
