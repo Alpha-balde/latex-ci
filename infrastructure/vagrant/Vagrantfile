@@ -1,0 +1,28 @@
+# Vagrantfile
+Vagrant.configure("2") do |config|
+  # Nom de la VM dans Vagrant/VirtualBox
+  config.vm.define "latex-runner-vm" do |vm|
+    # Choisir Debian 12 (bookworm)
+    vm.vm.box = "debian/bookworm64"
+    
+    # Nom d’hôte à l’intérieur de la VM
+    vm.vm.hostname = "latex-runner"
+
+    # Configuration réseau privée
+    vm.vm.network "private_network", ip: "192.168.56.10"
+
+    # Ressources
+    vm.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+      vb.cpus = 4
+    end
+
+    # Provisioning : installation Docker
+    vm.vm.provision "shell", path: "install-docker.sh"
+
+    # Provisioning : installation runner
+    vm.vm.provision "shell", path: "install-runner.sh", privileged: false
+
+end
+
+end
