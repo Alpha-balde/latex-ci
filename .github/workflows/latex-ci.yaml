@@ -1,15 +1,14 @@
 name: LaTeX to PDF
 
 on:
-  push:
-    branches:
-      - master
-
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["Hello CI"]
+    types:
+      - completed
 
 jobs:
   build_latex:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -35,5 +34,6 @@ jobs:
         with:
           files: files/*.pdf
           tag_name: latest
+          
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
