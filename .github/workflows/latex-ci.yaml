@@ -9,7 +9,10 @@ on:
 jobs:
   build_latex:
     runs-on: ubuntu-latest
-
+    if: github.event.workflow_run.conclusion == 'success' 
+    strategy: 
+      matrix: 
+        file: ["index.tex", "memoire.tex", "template_umons.tex"] 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -17,7 +20,7 @@ jobs:
       - name: Compile LaTeX to PDF
         uses: xu-cheng/latex-action@v4
         with:
-          root_file: files/*.tex
+          root_file: files/${{ matrix.file }}
           work_in_root_file_dir: true
           compiler: lualatex
           args: "-interaction=nonstopmode -file-line-error"
@@ -25,15 +28,27 @@ jobs:
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PDF
+          name: pdf-${{ matrix.file }} 
           path: files/*.pdf
           retention-days: 1
+  release: 
+    needs: build_latex 
+    runs-on: ubuntu-latest
+    
+    steps: 
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: pdf-*
+          merge-multiple: true
+          path: compiled_pdfs 
+
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: files/*.pdf
+          files: compiled_pdfs/*.pdf
           tag_name: latest
-          
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
