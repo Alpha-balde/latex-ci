@@ -3,7 +3,7 @@ name: LaTeX to PDF
 on:
   push:
     branches: [master]
-    
+
   workflow_run:
     workflows: ["Hello CI"]
     types:
@@ -12,7 +12,7 @@ on:
 jobs:
   build_latex:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success' 
+    #if: github.event.workflow_run.conclusion == 'success'  # pour activer le workflow run push 
     strategy: 
       matrix: 
         file: ["index.tex", "memoire.tex", "template_umons.tex"] 
