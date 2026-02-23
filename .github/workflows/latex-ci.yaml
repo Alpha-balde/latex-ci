@@ -1,6 +1,9 @@
 name: LaTeX to PDF
 
 on:
+  push:
+    branches: [master]
+    
   workflow_run:
     workflows: ["Hello CI"]
     types:
@@ -22,8 +25,8 @@ jobs:
         with:
           root_file: files/${{ matrix.file }}
           work_in_root_file_dir: true
-          compiler: lualatex
-          args: "-interaction=nonstopmode -file-line-error"
+          latexmk_use_lualatex: true
+          args: "-file-line-error -halt-on-error -interaction=nonstopmode"
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
